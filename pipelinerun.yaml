@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: k8-pipelinerun
+spec:
+  pipelineRef:
+    name: k8-pipeline
+  params:
+  - name: repository
+    value: https://github.com/urvashigupta7/Go-Server
+  workspaces:
+  - name: workspace
+    persistentvolumeclaim:
+      claimName: k8-pvc

@@ -1,0 +1,37 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: k8-pipeline
+spec:
+  params: 
+    - name: repository
+      type: string
+  workspaces:
+  - name: workspace
+  tasks:
+  - name: clone-git-repo
+    workspaces:
+    - name: output
+      workspace: workspace
+    taskRef:
+      name: git-clone
+    params:
+      - name: url
+        value: $(params.repository)
+      - name: deleteExisting
+        value: "true"
+  - name: lint-yaml
+    runAfter:
+    - clone-git-repo
+    taskRef: 
+      name: lint-yaml
+    workspaces:
+      - name: source
+        workspace: workspace
+    params: 
+      - name: manifest
+        value: k8
+      - name: default-option
+        value: --add-all-built-in
+      - name: args
+        value: []

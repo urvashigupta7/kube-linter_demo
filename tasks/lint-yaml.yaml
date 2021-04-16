@@ -1,0 +1,51 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: lint-yaml
+spec:
+  description: This task can be used to lint yaml files.
+  workspaces:
+    - name: source
+      description: A workspace that contains fetched git repo.
+  params:
+    - name: config-file
+      type: string
+      description: path to config file for custom checks defined in YAML file
+      default: ""
+    - name: manifest
+      type: string
+      description: path to manifest files or manifest directory
+      default: ""
+    - name: includelist
+      type: string
+      description: "lists comma separated checks to be included"
+      default: ""
+    - name: excludelist
+      type: string
+      description: "lists comma separated checks to be excluded"
+      default: ""
+    - name: default-option
+      type: string
+      description: "provides two options for adding all built-in checks or disabling default checks: --add-all-built-in and --do-not-auto-add-defaults"
+      default: ""
+    - name : args
+      type: array
+      description: "args"
+      default: []
+  steps:
+    - name: lint-yaml
+      image: stackrox/kube-linter:0.1.6-8-ga8478eef70-alpine
+      workingDir: $(workspaces.source.path)
+      script: |
+        #!/bin/sh
+        
+        mv ../../kube-linter ../../bin;
+
+        if [ -z $(params.config-file) ]
+        then
+          kube-linter lint $(params.manifest) $(params.default-option) --include "$(params.includelist)" --exclude "$(params.excludelist)" $*
+        else
+          kube-linter lint  $(params.manifest) -c $(params.config-file) $*
+        fi         
+      args:
+      - $(params.args)
