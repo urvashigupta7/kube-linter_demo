@@ -6,7 +6,7 @@ This task uses [kube-linter](https://github.com/stackrox/kube-linter) tool to id
 `kubectl apply -f https://raw.githubusercontent.com/urvashigupta7/kube-linter_demo/master/tasks/lint-yaml.yaml`
 
 ## Workspaces
-* source: A Workspace containing your source directory.
+* **source** : A Workspace containing your source directory.
 
 ## Parameters
 * **config-file** : path to config file(written in YAML) for custom checks. Example config-file can be found [here](https://github.com/mfosterrox/kube-linter-walkthrough/blob/main/configs/config_customChecks.yaml) (default: `""`) 
