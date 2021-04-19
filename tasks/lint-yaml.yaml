@@ -15,7 +15,7 @@ spec:
     - name: manifest
       type: string
       description: path to manifest files or manifest directory
-      default: ""
+      default: "."
     - name: includelist
       type: string
       description: "lists comma separated checks to be included"
@@ -26,7 +26,7 @@ spec:
       default: ""
     - name: default-option
       type: string
-      description: "provides two options for adding all built-in checks or disabling default checks: --add-all-built-in and --do-not-auto-add-defaults"
+      description: "provides two options for adding all built-in checks or disabling default checks: add-all-built-in and/do-not-auto-add-defaults"
       default: ""
     - name : args
       type: array
@@ -43,7 +43,12 @@ spec:
 
         if [ -z $(params.config-file) ]
         then
-          kube-linter lint $(params.manifest) $(params.default-option) --include "$(params.includelist)" --exclude "$(params.excludelist)" $*
+          if [ -z $(params.default-option) ]
+          then
+            kube-linter lint $(params.manifest) --include "$(params.includelist)" --exclude "$(params.excludelist)" $*
+          else
+            kube-linter lint $(params.manifest) --$(params.default-option) --include "$(params.includelist)" --exclude "$(params.excludelist)" $*
+          fi
         else
           kube-linter lint  $(params.manifest) -c $(params.config-file) $*
         fi         

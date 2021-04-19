@@ -32,6 +32,6 @@ spec:
       - name: manifest
         value: k8
       - name: default-option
-        value: --add-all-built-in
-      - name: args
-        value: []
+        value: do-not-auto-add-defaults
+      - name: includelist
+        value: "default-service-account,no-readiness-probe"
