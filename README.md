@@ -14,4 +14,4 @@ This task uses [kube-linter](https://github.com/stackrox/kube-linter) tool to id
 * **includelist** : checks to be included. (default: `""`)
 * **excludelist** : checks to be excluded. (default: `""`)
 * **default-option** : provides two options for adding all [built-in](https://docs.kubelinter.io/#/generated/checks) checks or disabling default checks: accepts two values add-all-built-in/do-not-auto-add-defaults.(default: `""`)
-* **args** : args. (default: `""`)
+* **args** : args. (default: `[]`)
