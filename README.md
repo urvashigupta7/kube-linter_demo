@@ -13,5 +13,5 @@ This task uses [kube-linter](https://github.com/stackrox/kube-linter) tool to id
 * **manifest** : path to manifest file or directory. (default: `.`)
 * **includelist** : checks to be included. (default: `""`)
 * **excludelist** : checks to be excluded. (default: `""`)
-* **default-option** : provides two options for adding all built-in checks or disabling default checks: add-all-built-in and/do-not-auto-add-defaults.(default: `""`)
+* **default-option** : provides two options for adding all [built-in](https://docs.kubelinter.io/#/generated/checks) checks or disabling default checks: accepts two values add-all-built-in/do-not-auto-add-defaults.(default: `""`)
 * **args** : args. (default: `""`)
