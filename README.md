@@ -1,6 +1,6 @@
 # kube-linter_demo
 
-This task uses kube-linter tool to identify misconfigurations in kubernetes objects.
+This task uses [kube-linter](https://github.com/stackrox/kube-linter) tool to identify misconfigurations in kubernetes objects.
 
 ## Install the Task
 `kubectl apply -f https://raw.githubusercontent.com/urvashigupta7/kube-linter_demo/master/tasks/lint-yaml.yaml`
