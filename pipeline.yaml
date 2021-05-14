@@ -20,9 +20,20 @@ spec:
         value: $(params.repository)
       - name: deleteExisting
         value: "true"
-  - name: lint-yaml
+  - name: check-dep-version
     runAfter:
     - clone-git-repo
+    taskRef: 
+      name : check-dep-version
+    workspaces:
+      - name: source
+        workspace: workspace
+    params:
+    - name: manifest
+      value: k8
+  - name: lint-yaml
+    runAfter:
+    - check-dep-version
     taskRef: 
       name: lint-yaml
     workspaces:

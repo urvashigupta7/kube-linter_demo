@@ -1,0 +1,33 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: check-dep-version
+spec:
+  description: This task can find out deprecated and removed kubernetes apiVersions
+  workspaces:
+    - name: source
+      description: A workspace that contains fetched git repo.
+  params:
+    - name: manifest
+      type: string
+      description: path to manifest files or manifest directory
+      default: "."
+    - name : args
+      type: array
+      description: "args"
+      default: []
+  steps:
+    - name: dep-version
+      image:  quay.io/fairwinds/pluto:master
+      workingDir: $(workspaces.source.path)
+      script: |
+        #!/bin/sh
+          
+          if [[ -d $(params.manifest) ]]
+          then 
+            /pluto detect-files -d $(params.manifest) -o json $*
+          else
+            /pluto detect $(params.manifest) -o json $*
+          fi
+      args:
+      - $(params.args)
