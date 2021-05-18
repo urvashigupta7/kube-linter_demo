@@ -3,7 +3,7 @@
 This task uses [kube-linter](https://github.com/stackrox/kube-linter) tool to identify misconfigurations in kubernetes objects.
 
 ## Install the Task
-`kubectl apply -f https://raw.githubusercontent.com/urvashigupta7/kube-linter_demo/master/tasks/lint-yaml.yaml`
+`kubectl apply -f https://raw.githubusercontent.com/urvashigupta7/kubernetes_manifest_checks/master/tasks/kube_linter/lint-yaml.yaml`
 
 ## Workspaces
 * **source** : A Workspace containing your source directory.
