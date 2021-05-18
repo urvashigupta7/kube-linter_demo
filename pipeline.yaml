@@ -31,6 +31,8 @@ spec:
     params:
     - name: manifest
       value: k8
+    - name: output
+      value: json
   - name: lint-yaml
     runAfter:
     - check-dep-version

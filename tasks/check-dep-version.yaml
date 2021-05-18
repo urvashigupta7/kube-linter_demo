@@ -10,8 +10,12 @@ spec:
   params:
     - name: manifest
       type: string
-      description: path to manifest files or manifest directory
+      description: path to manifest file or manifest directory
       default: "."
+    - name: output
+      type: string
+      description: output format to use. (normal|wide|custom|json|yaml|markdown) (default "normal")
+      default: ""
     - name : args
       type: array
       description: "args"
@@ -25,9 +29,9 @@ spec:
           
           if [[ -d $(params.manifest) ]]
           then 
-            /pluto detect-files -d $(params.manifest) -o json $*
+            /pluto detect-files -d $(params.manifest) -o $(params.output) $*
           else
-            /pluto detect $(params.manifest) -o json $*
+            /pluto detect $(params.manifest) -o $(params.output) json $*
           fi
       args:
       - $(params.args)
