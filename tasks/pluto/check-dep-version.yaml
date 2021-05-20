@@ -31,7 +31,7 @@ spec:
           then 
             /pluto detect-files -d $(params.manifest) -o $(params.output) $*
           else
-            /pluto detect $(params.manifest) -o $(params.output) json $*
+            /pluto detect $(params.manifest) -o $(params.output) $*
           fi
       args:
       - $(params.args)
