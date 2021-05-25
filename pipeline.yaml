@@ -44,7 +44,7 @@ spec:
     params: 
       - name: manifest
         value: k8
-      - name: default-option
+      - name: default_option
         value: do-not-auto-add-defaults
       - name: includelist
         value: "default-service-account,no-readiness-probe"
