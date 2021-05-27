@@ -27,11 +27,21 @@ spec:
       script: |
         #!/bin/sh
           
+          result=
           if [[ -d $(params.manifest) ]]
           then 
-            /pluto detect-files -d $(params.manifest) -o $(params.output) $*
+            result=$(/pluto detect-files -d $(params.manifest) -o $(params.output) $*)
           else
-            /pluto detect $(params.manifest) -o $(params.output) $*
+            result=$(/pluto detect $(params.manifest) -o $(params.output) $*)
+          fi
+
+          if [ $? -eq 0 ]
+          then
+            echo "No deprecated or removed API versions found"
+            exit 0
+          else
+            echo "$result"
+            exit 1
           fi
       args:
       - $(params.args)
