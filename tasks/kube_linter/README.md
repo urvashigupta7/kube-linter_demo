@@ -14,7 +14,7 @@ This task uses [kube-linter](https://github.com/stackrox/kube-linter) tool to id
 * **includelist** : [checks](https://docs.kubelinter.io/#/generated/checks) to be included. (default: `""`)
 * **excludelist** : [checks](https://docs.kubelinter.io/#/generated/checks) to be excluded. (default: `""`)
 * **default_option** : provides two options for adding all [built-in](https://docs.kubelinter.io/#/generated/checks) checks or disabling default checks: accepts two values add-all-built-in/do-not-auto-add-defaults.(default: `""`)
-* **output_format** : output format of the report. (default: `json`)
+* **output_format** : output format of the report. (JSON | SARIF) (default: `json`)
 * **args** : args. (default: `[]`)
 
 
